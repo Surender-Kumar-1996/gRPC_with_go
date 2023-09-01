@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package sum;
+
+option go_package = "github.com/Surender-Kumar-1996/gRPC_with_go/calculator/proto";
+
+message SumRequest{
+    int32 first_number =1;
+    int32 second_number = 2;
+}
+
+message SumResponse{
+    int32 result = 1;
+}
+
+message PrimeRequest{
+    int32 numb = 1;
+}
+
+message StreamAverageRequest{
+    int32 num =1;
+}
+
+message AvgResponse{
+    double result = 1;
+}
+
+message MaxRequest{
+    int32 num =1;
+}
+
+message MaxResponse{
+    int32 maxx = 1;
+}
+
+service SumService{
+    rpc Sum(SumRequest) returns (SumResponse);
+    rpc Prime(PrimeRequest) returns (stream SumResponse);
+    rpc Avg(stream StreamAverageRequest) returns (AvgResponse);
+    rpc Max(stream MaxRequest) returns (stream MaxResponse);
+
+}
